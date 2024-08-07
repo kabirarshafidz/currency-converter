@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/convert" id="form" class="form" method="POST">
+      <% if (locals.content) { %>
+      <input
+        type="date"
+        min="1999-01-04"
+        max="<%= date %>"
+        name="date"
+        value="<%= content.newDate %>"
+      />
+      <input
+        type="number"
+        name="from-amount"
+        onkeypress="return /[0-9]/i.test(event.key)"
+        required
+        value="<%= content.fromAmount %>"
+      />
+      <select name="from-currency" class="form-select">
+        <option value="<%= content.fromCurrency %>">
+          <%= content.fromCurrency %> <%= currencyOption[content.fromCurrency]
+          %>
+        </option>
+        <% for(var key in currencyOption) { %>
+        <option value="<%= key %>">
+          <%= key %> <%= currencyOption[key] %>
+        </option>
+        <% } %>
+      </select>
+      <input
+        type="number"
+        name="to-amount"
+        disabled
+        value="<%= content.toAmount %>"
+      />
+      <select name="to-currency" class="form-select">
+        <option value="<%= content.toCurrency %>">
+          <%= content.toCurrency %> <%= currencyOption[content.toCurrency] %>
+        </option>
+        <% for(var key in currencyOption) { %>
+        <option value="<%= key %>" data-display="Select">
+          <%= key %> <%= currencyOption[key] %>
+        </option>
+        <% } %>
+      </select>
+      <button type="submit" class="form-submit">Convert</button>
+      <% } else { %>
+      <input
+        type="date"
+        min="1999-01-04"
+        max="<%= date %>"
+        name="date"
+        value="<%= date %>"
+      />
+      <input
+        type="number"
+        name="from-amount"
+        onkeypress="return /[0-9]/i.test(event.key)"
+        required
+      />
+      <select name="from-currency" class="form-select">
+        <% for(var key in currencyOption) { %>
+        <option value="<%= key %>">
+          <%= key %> <%= currencyOption[key] %>
+        </option>
+        <% } %>
+      </select>
+      <input type="number" name="to-amount" disabled />
+      <select name="to-currency" class="form-select">
+        <% for(var key in currencyOption) { %>
+        <option value="<%= key %>">
+          <%= key %> <%= currencyOption[key] %>
+        </option>
+        <% } %>
+      </select>
+      <button type="submit" class="form-submit">Convert</button>
+      <% } %>
+    </form>
+  </body>
+</html>
