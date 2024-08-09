@@ -36,20 +36,27 @@ app.post("/convert", async (req, res) => {
   let amountFrom = req.body["from-amount"];
   let currencyFrom = req.body["from-currency"];
   let amountTo;
+  let perAmountTo;
   let currencyTo = req.body["to-currency"];
   const result = await axios.get(
     API_URL +
       `${date}?amount=${amountFrom}&from=${currencyFrom}&to=${currencyTo}`
   );
-  let tempoData = result.data;
+  const result2 = await axios.get(
+    API_URL + `${date}?from=${currencyFrom}&to=${currencyTo}`
+  );
   for (var key in result.data.rates) {
     amountTo = result.data.rates[key];
+  }
+  for (var key in result2.data.rates) {
+    perAmountTo = result2.data.rates[key];
   }
   data = {
     newDate: date,
     fromAmount: amountFrom,
     fromCurrency: currencyFrom,
     toAmount: amountTo,
+    perToAmount: perAmountTo,
     toCurrency: currencyTo,
   };
   console.log(data);

@@ -1,0 +1,47 @@
+body {
+  height: 100vh;
+  background-image: linear-gradient(225deg, #0e0706, #d65130);
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: #eee2df;
+}
+
+.main-container {
+  background-color: #0e0706;
+}
+
+input,
+select,
+option {
+  background-color: #0e0706;
+  color: #eee2df;
+  border: solid #d65130 3px;
+}
+
+.btn-danger {
+  background-color: #d65130;
+  border: solid #d65130 3px;
+  font-size: large;
+}
+
+.x-title {
+  font-family: "Yesteryear", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 100px;
+  color: #d65130;
+}
+
+.font-effect {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #eee2df;
+  color: transparent;
+}
+
+.underline {
+  text-decoration: underline;
+  text-decoration-color: #d65130;
+}

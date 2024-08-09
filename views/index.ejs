@@ -3,84 +3,230 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Xchainge</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Foldit&family=Orbitron&family=Yesteryear"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <form action="/convert" id="form" class="form" method="POST">
-      <% if (locals.content) { %>
-      <input
-        type="date"
-        min="1999-01-04"
-        max="<%= date %>"
-        name="date"
-        value="<%= content.newDate %>"
-      />
-      <input
-        type="number"
-        name="from-amount"
-        onkeypress="return /[0-9]/i.test(event.key)"
-        required
-        value="<%= content.fromAmount %>"
-      />
-      <select name="from-currency" class="form-select">
-        <option value="<%= content.fromCurrency %>">
-          <%= content.fromCurrency %> <%= currencyOption[content.fromCurrency]
-          %>
-        </option>
-        <% for(var key in currencyOption) { %>
-        <option value="<%= key %>">
-          <%= key %> <%= currencyOption[key] %>
-        </option>
-        <% } %>
-      </select>
-      <input
-        type="number"
-        name="to-amount"
-        disabled
-        value="<%= content.toAmount %>"
-      />
-      <select name="to-currency" class="form-select">
-        <option value="<%= content.toCurrency %>">
-          <%= content.toCurrency %> <%= currencyOption[content.toCurrency] %>
-        </option>
-        <% for(var key in currencyOption) { %>
-        <option value="<%= key %>" data-display="Select">
-          <%= key %> <%= currencyOption[key] %>
-        </option>
-        <% } %>
-      </select>
-      <button type="submit" class="form-submit">Convert</button>
-      <% } else { %>
-      <input
-        type="date"
-        min="1999-01-04"
-        max="<%= date %>"
-        name="date"
-        value="<%= date %>"
-      />
-      <input
-        type="number"
-        name="from-amount"
-        onkeypress="return /[0-9]/i.test(event.key)"
-        required
-      />
-      <select name="from-currency" class="form-select">
-        <% for(var key in currencyOption) { %>
-        <option value="<%= key %>">
-          <%= key %> <%= currencyOption[key] %>
-        </option>
-        <% } %>
-      </select>
-      <input type="number" name="to-amount" disabled />
-      <select name="to-currency" class="form-select">
-        <% for(var key in currencyOption) { %>
-        <option value="<%= key %>">
-          <%= key %> <%= currencyOption[key] %>
-        </option>
-        <% } %>
-      </select>
-      <button type="submit" class="form-submit">Convert</button>
-      <% } %>
-    </form>
+    <div
+      class="d-flex flex-column justify-content-center align-items-center"
+      style="height: 100%"
+    >
+      <div class="mb-4">
+        <h1><span class="x-title">X</span>chainge</h1>
+      </div>
+      <div
+        class="p-5 rounded-3 mt-4 main-container"
+        style="height: 60%; width: 50%"
+      >
+        <form
+          action="/convert"
+          id="form"
+          method="POST"
+          style="height: 100%; width: 100%"
+        >
+          <% if (locals.content) { %>
+          <div
+            class="d-flex flex-column justify-content-between"
+            style="height: 100%; width: 100%"
+          >
+            <div
+              class="d-flex flex-column justify-content-between"
+              style="height: 75%"
+            >
+              <div class="d-flex align-items-center">
+                <p class="m-0 me-2">Set date:</p>
+                <input
+                  type="date"
+                  min="1999-01-04"
+                  max="<%= date %>"
+                  name="date"
+                  value="<%= content.newDate %>"
+                />
+              </div>
+              <div class="text-center">
+                <p>
+                  On <%= content.newDate %>, 1
+                  <span style="color: #d65130"
+                    ><%= content.fromCurrency %></span
+                  >
+                  equals
+                </p>
+                <h3>
+                  <%= content.perToAmount %>
+                  <span style="color: #d65130"><%= content.toCurrency %></span>
+                </h3>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column">
+                  <p class="m-0">From:</p>
+                  <input
+                    type="number"
+                    name="from-amount"
+                    onkeypress="return /[0-9]/i.test(event.key)"
+                    required
+                    value="<%= content.fromAmount %>"
+                  />
+                  <select name="from-currency" class="form-select">
+                    <option value="<%= content.fromCurrency %>">
+                      <%= content.fromCurrency %> <%=
+                      currencyOption[content.fromCurrency] %>
+                    </option>
+                    <% for(var key in currencyOption) { %>
+                    <option value="<%= key %>">
+                      <%= key %> <%= currencyOption[key] %>
+                    </option>
+                    <% } %>
+                  </select>
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="48px"
+                    viewBox="0 -960 960 960"
+                    width="48px"
+                    fill="#d65130"
+                  >
+                    <path
+                      d="M228-174Q120-206 60-292.5T0-480q0-101 60-187.5T228-786v62q-74 26-121 93T60-480q0 84 47 150.5T228-236v62Zm332 14q-131 0-225.5-94.5T240-480q0-131 94.5-225.5T560-800q53 0 107.5 19t97.5 59l-40 41q-35-29-79-44t-86-15q-107 0-183.5 76.5T300-480q0 107 76.5 183.5T560-220q42 0 86-14.5t79-43.5l40 40q-43 40-97.5 59T560-160Zm247-169-43-43 83-83H523v-54h324l-83-83 43-43 153 153-153 153Z"
+                    />
+                  </svg>
+                </div>
+                <div class="d-flex flex-column">
+                  <p class="m-0">To:</p>
+                  <input
+                    type="number"
+                    name="to-amount"
+                    disabled
+                    value="<%= content.toAmount %>"
+                  />
+                  <select name="to-currency" class="form-select">
+                    <option value="<%= content.toCurrency %>">
+                      <%= content.toCurrency %> <%=
+                      currencyOption[content.toCurrency] %>
+                    </option>
+                    <% for(var key in currencyOption) { %>
+                    <option value="<%= key %>">
+                      <%= key %> <%= currencyOption[key] %>
+                    </option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="align-self-end">
+              <button
+                type="submit"
+                class="form-submit btn btn-danger px-4 py-2"
+              >
+                Convert
+              </button>
+            </div>
+          </div>
+          <% } else { %>
+          <div
+            class="d-flex flex-column justify-content-between"
+            style="height: 100%; width: 100%"
+          >
+            <div
+              class="d-flex flex-column justify-content-between"
+              style="height: 75%"
+            >
+              <div class="d-flex align-items-center">
+                <p class="m-0 me-2">Set date:</p>
+                <input
+                  type="date"
+                  min="1999-01-04"
+                  max="<%= date %>"
+                  name="date"
+                  value="<%= date %>"
+                />
+              </div>
+              <div class="text-center">
+                <h2>
+                  Any<span style="color: #d65130">where</span>, Any<span
+                    class="font-effect"
+                    >time</span
+                  >, Any
+                  <span class="underline">Currency</span>
+                </h2>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column">
+                  <p class="m-0">From:</p>
+                  <input
+                    type="number"
+                    name="from-amount"
+                    onkeypress="return /[0-9]/i.test(event.key)"
+                    required
+                  />
+                  <select name="from-currency" class="form-select">
+                    <% for(var key in currencyOption) { %>
+                    <option value="<%= key %>">
+                      <%= key %> <%= currencyOption[key] %>
+                    </option>
+                    <% } %>
+                  </select>
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="48px"
+                    viewBox="0 -960 960 960"
+                    width="48px"
+                    fill="#d65130"
+                  >
+                    <path
+                      d="M228-174Q120-206 60-292.5T0-480q0-101 60-187.5T228-786v62q-74 26-121 93T60-480q0 84 47 150.5T228-236v62Zm332 14q-131 0-225.5-94.5T240-480q0-131 94.5-225.5T560-800q53 0 107.5 19t97.5 59l-40 41q-35-29-79-44t-86-15q-107 0-183.5 76.5T300-480q0 107 76.5 183.5T560-220q42 0 86-14.5t79-43.5l40 40q-43 40-97.5 59T560-160Zm247-169-43-43 83-83H523v-54h324l-83-83 43-43 153 153-153 153Z"
+                    />
+                  </svg>
+                </div>
+                <div class="d-flex flex-column">
+                  <p class="m-0">To:</p>
+                  <input type="number" name="to-amount" disabled />
+                  <select name="to-currency" class="form-select">
+                    <% for(var key in currencyOption) { %>
+                    <option value="<%= key %>">
+                      <%= key %> <%= currencyOption[key] %>
+                    </option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="align-self-end">
+              <button
+                type="submit"
+                class="form-submit btn btn-danger px-4 py-2"
+              >
+                Convert
+              </button>
+            </div>
+          </div>
+          <% } %>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
